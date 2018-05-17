@@ -1,0 +1,39 @@
+// media query breakpoints
+$extra-small-screen: 480;
+$small-screen: 768;
+$medium-screen: 992;
+$large-screen: 1200;
+
+$map-grid-props: (
+    '': 0,
+    '-xs': $extra-small-screen,
+    '-sm': $small-screen,
+    '-md': $medium-screen,
+    '-lg': $large-screen
+);
+
+// Grid cols
+$grid-cols: 12;
+
+// colors
+$colors: (
+    'c-gray': #9e9e9e,
+    'c-white': #fff,
+    'c-green': #25aa73,
+    'c-black': #212121,
+    'c-red': #d20000,
+    'c-blue': #429fdd,
+    'c-darkBlue': #205682,
+    'c-primary2': #205682,
+    'c-placeholder': #666,
+    'c-primary': #008f9c,
+    'c-success': #25aa73,
+    'c-success2': rgb(61, 193, 109),
+    'c-info': #429fdd,
+    'c-warning': #ff9000,
+    'c-warning2': #ff9000,
+    'c-danger': #d20000,
+    'c-danger2': rgb(238, 86, 87),
+    'c-copy': #ffb411,
+    'c-save-as': #3274a1,
+);

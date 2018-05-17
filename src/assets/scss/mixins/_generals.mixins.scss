@@ -1,0 +1,62 @@
+// mixin felx (row)
+@mixin flex {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+// create media queries
+@mixin create-mq($breakpoint, $min-or-max) {
+    @if($breakpoint == 0) {
+        @content;
+    } @else {
+        @media screen and (#{$min-or-max}-width: $breakpoint *1px) {
+            @content;
+        }
+    }
+}
+
+// create column clases
+@mixin create-col-classes($modifier, $grid-cols, $breakpoint) {
+    @include create-mq($breakpoint, 'min') {
+        @if($breakpoint == 0) {
+            @for $i from 1 through $grid-cols {
+                &-col-#{$i} {
+                    flex-basis: 100%;
+                }
+                &-col-offset-#{$i} {
+                    margin-left: 100%;
+                }
+            }
+        } @else {
+            @for $i from 1 through $grid-cols {
+                &-col-#{$i} {
+                    flex-basis: (100 / ($grid-cols / $i) ) * 1%;
+                }
+                &-col-offset-#{$i} {
+                    margin-left: (100 / ($grid-cols / $i) ) * 1%;
+                }
+            }
+        }  
+    }
+}
+
+@mixin row() {
+    @include flex();
+
+    @each $modifier , $breakpoint in $map-grid-props {
+        @include create-col-classes($modifier, $grid-cols, $breakpoint);
+    }
+}
+
+@include block('container') {
+    max-width: $medium-screen * 1px;
+    margin: 0 auto;
+    @include element('fluid') {
+      margin: 0;
+      max-width: 100%;
+    }
+}
+
+@include block ('row') {
+    @include row();
+}

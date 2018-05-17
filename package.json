@@ -1,0 +1,57 @@
+{
+  "name": "ts-react-wp-sass",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "browserslist": [
+    "last 2 versions"
+  ],
+  "scripts": {
+    "start": "webpack-dev-server --mode development --config config/webpack.config.js",
+    "build": "webpack --mode production --config config/webpack.config.js",
+    "test": "jest --config config/jest.config.js"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "sass",
+    "webpack"
+  ],
+  "author": "gsi-manuel",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^22.2.3",
+    "@types/react": "^16.3.13",
+    "@types/react-dom": "^16.0.5",
+    "css-loader": "^0.28.11",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "file-loader": "^1.1.11",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "img-loader": "^3.0.0",
+    "jest": "^22.4.3",
+    "mini-css-extract-plugin": "^0.4.0",
+    "node-sass": "^4.9.0",
+    "postcss-loader": "^2.1.4",
+    "react-router-dom": "^4.2.2",
+    "react-test-renderer": "^16.3.2",
+    "sass-loader": "^7.0.1",
+    "ts-jest": "^22.4.4",
+    "ts-loader": "^4.2.0",
+    "tslint": "^5.9.1",
+    "tslint-loader": "^3.6.0",
+    "tslint-react": "^3.5.1",
+    "typescript": "^2.8.3",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.1.2",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "dependencies": {
+    "mobx": "^4.2.1",
+    "mobx-react": "^5.1.2",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  }
+}

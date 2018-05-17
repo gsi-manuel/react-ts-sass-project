@@ -1,0 +1,19 @@
+@import 'styles';
+
+.color-1 {
+  background: map-get($map: $colors, $key: c-danger);
+}
+
+.color-2 {
+  background: map-get($map: $colors, $key: c-primary);
+}
+
+
+.color-3 {
+  background: map-get($map: $colors, $key: c-primary2);
+}
+
+
+.color-4 {
+  background: map-get($map: $colors, $key: c-green);
+}
