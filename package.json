@@ -15,7 +15,8 @@
     "react",
     "typescript",
     "sass",
-    "webpack"
+    "webpack",
+    "jest"
   ],
   "author": "gsi-manuel",
   "license": "MIT",
