@@ -10,25 +10,28 @@ There are several ways to create a React application, one of them is through the
 
 
 
-Create a new directory and move into it
-
+# Create a new directory and move into it
+```
 mkdir ts-react-wp-sass && cd $_ && config && src
-
+```
 Initialize a package.json by running:
-
+```
 npm init -y
+```
 
 We need to install the webpack and other as development dependencies.
-
+```
 yarn add webpack webpack-cli webpack-dev-server -D
-
+```
 
 Generating an HTML file from a template, minimizing the markup
-
+```
 yarn add html-webpack-plugin html-loader -D
+```
 
 Now create a new file named config/webpack.config.js and add a base configuration
 
+```js
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 module.exports = {
  module: {
@@ -46,10 +49,11 @@ module.exports = {
    })
  ]
 };
-
+```
 
 Create src/index.html
 
+```html
 <!DOCTYPE html>
 <html lang="en">
  <head>
@@ -64,14 +68,14 @@ Create src/index.html
 <div id=”root”></div>
 </body>
 </html>
-
+```
 Install typescript
-
+```
 yarn add typescript ts-loader -D
-
+```
 
 Update config/webpack.config.js and add this code
-
+```js
 devtool: 'source-map',
 resolve: {
     extensions: [".tsx", ".ts", ".js"]
@@ -81,15 +85,16 @@ resolve: {
     loader: 'ts-loader',
     exclude: /node_modules/,
 },
-
+```
 Create src/index.ts for test
-
-function getName(name: String) {
+```ts
+getName(name: String) {
     return name;
-  }
+}
 console.log(getName(‘foo-bar’));
-
+```
 Create tsconfig.json
+```json
 {
   "compilerOptions": {
     "module": "esnext",
@@ -111,32 +116,32 @@ Create tsconfig.json
     "node_modules"
   ]
 }
-
+```
 
 
 Update package.json and add in scripts and run with webpack to test
-
+```
 "build": "webpack --mode production --config config/webpack.config.js",
 yarn run build
-
+```
 Open dist/index.html and view with devtool
 
 Install packages react
-
+```
 yarn add react react-dom
 yarn add @types/react @types/react-dom -D
-
+```
 Change src/index.ts by src/index.tsx and paste this code
-
+```tsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
    
 ReactDOM.render(<App />, document.getElementById('root'));
-
+```
 
 Create src/App.tsx
-   
+```tsx   
 import React, { Component } from 'react';
 
 
@@ -150,9 +155,10 @@ export class App extends Component {
 
 
 export default App;
-
+```
 
 Update tsconfig.json
+```json
 {
   "compilerOptions": {
     "module": "esnext",
@@ -175,15 +181,15 @@ Update tsconfig.json
     "node_modules"
   ]
 }
-
+```
 
 Add tslint
-
+```
 yarn add tslint tslint-loader tslint-react -D
-
+```
 Create tslint.json
 
- 
+```json 
 {
     "extends": ["tslint-react"],
     "rules": {
@@ -283,22 +289,22 @@ Create tslint.json
         ]
     }
 }
-
+```
 Add rule in config/webpack.config.js
-
+```js
 {
   test: /\.(ts|tsx)$/,
   loader: 'tslint-loader',
   enforce: 'pre',
 },
-
+```
 Optimizing images
-
+```
 yarn add img-loader url-loader file-loader -D
-
+```
 
 Add to webpack.config.js
-
+```js
 {                                                                                                                                                                                      
   test: /\.(png|jpe?g|gif|svg)$/,                                                                                                                                                      
   use: [                                                                                                                                                                               
@@ -310,17 +316,19 @@ Add to webpack.config.js
     }
   ]                                                                                                                                                                                    
 }
- 
+```
 
 Compiling SASS
-
+```
 yarn add css-loader sass-loader postcss-loader node-sass mini-css-extract-plugin -D
-
+```
 Update to config/webpack.config.js
 Variable:
+```js
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
- 
+ ```
 Rule:
+```js
 {
   test: /\.scss$/,
   use: [
@@ -342,9 +350,9 @@ new MiniCssExtractPlugin({
   	  filename: "[name].css",
         chunkFilename: "[id].css"
       })
-
+```
 Create src/App.scss
-
+```scss
 $color-orange: #f98a09;
  
 .main {
@@ -355,52 +363,55 @@ $color-orange: #f98a09;
  justify-content: center;
  align-items: center;
 }
-
+```
 Import to src/App.tsx and use
 
 Import 
+```tsx
 import './App.scss'; 
-
+```
 
 Use scss
+```tsx
 <div className=”main”>REACT + TYPESCRIPT!!!</div>
-
+```
 
 Create postcss.config.js 
-
+```js
 module.exports = {
  plugins: [require("autoprefixer")]
 };
-
+```
 Open up package.json and configure the browsers list:
-
+```json
 "browserslist": ["last 2 versions"],
-
+```
 Update scripts in package.json
+```json
 scripts: { 
   "start": "webpack-dev-server --mode development --config config/webpack.config.js",
   "build": "webpack --mode production --config config/webpack.config.js",
   "test": "echo \"Error: no test specified\" && exit 1"
 },
-
+```
 Run application in developer mode
-
+```
 yarn start
-
+```
 Install Jest and dependencies to unit test
-
+```
 yarn add jest ts-jest react-test-renderer @types/jest enzyme enzyme-adapter-react-16 -D
-
+```
 
 Create src/setupTests.js
-
+```js
 var enzyme = require('enzyme');
 var Adapter = require('enzyme-adapter-react-16');
 
 enzyme.configure({ adapter: new Adapter() });
-
+```
 Create config/jest.config.js
-
+```js
 module.exports = {
     rootDir: '../',
     setupTestFrameworkScriptFile: "<rootDir>/src/setupTests.js",
@@ -420,21 +431,21 @@ module.exports = {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|css|scss)$": "<rootDir>/__mocks__/fileMock.js",
     },
 };
-
+```
 
 
 
 Update scripts in package.json
-
+```json
 scripts: { 
   "start": "webpack-dev-server --mode development --config config/webpack.config.js",
   "build": "webpack --mode production --config config/webpack.config.js",
   "test": "jest --config config/jest.config.js"
 },
-
+```
 
 Create src/App.spec.tsx and copy this content
-
+```tsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -454,9 +465,9 @@ describe('Component: App', () => {
   });
 
 });
-
+```
 
 Run test
-
+```
 yarn test
-
+```
